@@ -22,9 +22,8 @@ public class CardServiceImpl implements CardService {
     public String createCard(Card card) {
         // 使用 CardMapper 将卡片信息写入数据库
         cardMapper.insert(card.convertToVO());
-        return null;
-
-
+        // 返回成功消息或生成的卡片 ID
+        return "Card created successfully with ID: " + card.getId();
     }
 
     @Override

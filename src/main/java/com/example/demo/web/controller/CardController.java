@@ -14,18 +14,11 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
-    @PostMapping("createcard")
-    public ResponseEntity createCard(@RequestBody Card card) {
-
-
-        String  result = cardService.createCard(card);
-        if(result ==null)
-        {
-            return  ResponseEntity.ok("Card created successfully");
-        }
-        else {
-            return ResponseEntity.badRequest().body(result);
-        }
+    @PostMapping("/cards")
+    public ResponseEntity<String> createCard(@RequestBody Card card) {
+        // 调用服务层方法并接收返回的 String 类型结果
+        String result = cardService.createCard(card);
+        return ResponseEntity.ok(result);
     }
 
     @PutMapping("/assign")
