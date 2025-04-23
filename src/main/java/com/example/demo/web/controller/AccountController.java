@@ -31,8 +31,16 @@ public class AccountController {
     }
 
     @PutMapping("/changestatus")
-    public void changeAccountStatus(@RequestBody Account account) {
-        accountService.changeAccountStatus(account);
+    public ResponseEntity changeAccountStatus(@RequestBody Account account) {
+       String result =   accountService.changeAccountStatus(account);
+       if(result ==null)
+       {
+           return ResponseEntity.ok("Account status changed successfully");
+           }
+       else {
+           return ResponseEntity.badRequest().body(result);
+       }
+
     }
 
 
