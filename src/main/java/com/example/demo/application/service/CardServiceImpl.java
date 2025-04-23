@@ -77,7 +77,10 @@ public class CardServiceImpl implements CardService {
     @Override
     public ResponseEntity<?> getCardsByPage(int pageNum, int pageSize) {
         // 调用 CardMapper 的分页查询方法
-        List<CardVO> cardList = cardMapper.selectByPage(pageNum, pageSize);
+
+        int count = pageNum -1;
+        int offset = (pageNum - 1) * pageSize;
+        List<CardVO> cardList = cardMapper.selectByPage(offset, pageSize);
         int total = cardMapper.countAll();
 
         // 构造分页结果
