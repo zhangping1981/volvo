@@ -20,6 +20,7 @@ public class CardServiceImpl implements CardService {
         card.setId((long) (cards.size() + 1));
         cards.add(card);
         return card;
+
     }
 
     @Override

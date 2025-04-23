@@ -28,6 +28,7 @@ public class AccountServiceImpl implements AccountService {
            accountMapper.insert(accountVO);
        return null;}
        else {
+
            return result;
        }
     }

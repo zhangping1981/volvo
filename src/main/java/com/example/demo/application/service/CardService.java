@@ -7,4 +7,5 @@ public interface CardService {
     Card createCard(Card card);
     void assignCardToAccount(Long cardId, Long accountId);
     void changeCardStatus(Long cardId, CardStatus status);
+
 }
