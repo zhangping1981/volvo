@@ -1,15 +1,12 @@
 package com.example.demo.application.service;
 
-import com.example.demo.db.vo.AccountVO;
+import com.example.demo.infrastructure.vo.AccountVO;
 import com.example.demo.domain.model.Account;
-import com.example.demo.domain.model.AccountStatus;
 import com.example.demo.infrastructure.mapper.AccountMapper; // 引入数据库操作接口
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -24,6 +21,13 @@ public class AccountServiceImpl implements AccountService {
        if(result == null )
        {
            AccountVO accountVO = account.convertToVO();
+
+           AccountVO vo = accountMapper.selectById(accountVO.getEmail());
+           if(vo!=null)
+           {
+               return "Account already exists";
+           }
+
            accountVO.setLastUpdated(new Date());
            accountMapper.insert(accountVO);
        return null;}
@@ -44,6 +48,17 @@ public class AccountServiceImpl implements AccountService {
         accountVO.setStatus(account.getStatus().name());
         accountMapper.updateById(accountVO);
         return null;
+    }
+
+    @Override
+    public Account getAccountByEmail(String email) {
+
+        AccountVO vo =  accountMapper.selectById(email);
+        if(vo == null)
+        {
+            return null;
+        }
+        return Account.convertToDomain(vo);
     }
 
 }

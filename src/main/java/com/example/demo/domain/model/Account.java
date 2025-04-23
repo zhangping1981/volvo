@@ -1,8 +1,9 @@
 package com.example.demo.domain.model;
 
-import com.example.demo.db.vo.AccountVO;
+import com.example.demo.infrastructure.vo.AccountVO;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 public class Account {
@@ -12,7 +13,7 @@ public class Account {
     private String email; // 唯一标识
     private String contractId;
     private AccountStatus status;
-    private LocalDateTime lastUpdated;
+    private Date lastUpdated;
 
     public String validateEmail()
     {
@@ -23,6 +24,15 @@ public class Account {
             return "Invalid email format";
         }
         return null;
+    }
+
+    public static  Account convertToDomain(AccountVO accountVO)
+    {
+        Account account = new Account();
+        account.setEmail(accountVO.getEmail());
+        account.setStatus(AccountStatus.valueOf(accountVO.getStatus()));
+        account.setLastUpdated(accountVO.getLastUpdated());
+        return account;
     }
 
     public AccountVO convertToVO()

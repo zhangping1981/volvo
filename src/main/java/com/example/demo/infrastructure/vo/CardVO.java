@@ -1,4 +1,4 @@
-package com.example.demo.db.vo;
+package com.example.demo.infrastructure.vo;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -18,5 +18,6 @@ public class CardVO {
     private String email;
     private String contractId;
     private String status;
+    private String cardNumber;
     private Date lastUpdated;
 }

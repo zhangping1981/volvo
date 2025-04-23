@@ -5,7 +5,7 @@
     <!-- ... existing code ... -->
 
     <!-- 分页查询卡片列表 -->
-    <select id="selectByPage" resultType="com.example.demo.db.vo.CardVO">
+    <select id="selectByPage" resultType="com.example.demo.infrastructure.vo.CardVO">
         SELECT * FROM card
         LIMIT #{pageSize} OFFSET #{pageNum}
     </select>

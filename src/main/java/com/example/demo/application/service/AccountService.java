@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public interface AccountService {
     String  createAccount(Account account);
     String  changeAccountStatus(Account account);
+    Account  getAccountByEmail(String email);
 
 
 }

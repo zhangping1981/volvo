@@ -4,6 +4,7 @@ import com.example.demo.application.service.CardService;
 import com.example.demo.domain.model.Card;
 import com.example.demo.web.controller.view.PageView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +15,21 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
-    @PostMapping("/cards")
+    @PostMapping("/createcard")
     public ResponseEntity<String> createCard(@RequestBody Card card) {
         // 调用服务层方法并接收返回的 String 类型结果
-        String result = cardService.createCard(card);
-        return ResponseEntity.ok(result);
+
+       boolean isValid = card.isValidContractId();
+        if(!isValid)
+        {
+            return ResponseEntity.badRequest().body("the contackid must be  EMAID format");
+        }
+        String resultd = cardService.createCard(card);
+        if(resultd!= null)
+        {
+            return new ResponseEntity("Card created failed", HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok("card created");
     }
 
     @PutMapping("/assign")
@@ -26,7 +37,7 @@ public class CardController {
         String  result = cardService.assignCardToAccount(card);
         if(result ==null)
         {
-            return  ResponseEntity.ok("Card created successfully");
+            return  ResponseEntity.ok("Card assign successfully");
         }
         else {
             return ResponseEntity.badRequest().body(result);
@@ -46,7 +57,7 @@ public class CardController {
        }
     }
 
-    @GetMapping("/getList")
+    @PostMapping("/listPage")
     public ResponseEntity getCardList(@RequestBody PageView view) {
         return cardService.getCardsByPage(view.getPage(), view.getSize());
     }

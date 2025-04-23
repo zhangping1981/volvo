@@ -1,8 +1,7 @@
 package com.example.demo.infrastructure.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.demo.db.vo.AccountVO;
-import com.example.demo.db.vo.CardVO;
+import com.example.demo.infrastructure.vo.CardVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,6 +1,6 @@
 package com.example.demo.domain.model;
 
-import com.example.demo.db.vo.CardVO;
+import com.example.demo.infrastructure.vo.CardVO;
 import lombok.Data;
 
 import java.util.regex.Pattern;
@@ -68,12 +68,18 @@ public class Card {
         cardVO.setId(id);
         cardVO.setEmail(email);
         cardVO.setContractId(contractId);
+        cardVO.setCardNumber(cardNumber);
         if(status ==null)
         {
             status = CardStatus.ACTIVE;
         }
         cardVO.setStatus(status.name());
         return cardVO;
+    }
+
+    public  void asignCardToAccount(Card card) {
+
+
     }
 
 }

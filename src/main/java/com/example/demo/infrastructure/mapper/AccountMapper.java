@@ -1,7 +1,7 @@
 package com.example.demo.infrastructure.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.demo.db.vo.AccountVO;
+import com.example.demo.infrastructure.vo.AccountVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

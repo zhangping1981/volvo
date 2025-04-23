@@ -1,4 +1,4 @@
-package com.example.demo.db.vo;
+package com.example.demo.infrastructure.vo;
 
 
 import com.baomidou.mybatisplus.annotation.TableId;
