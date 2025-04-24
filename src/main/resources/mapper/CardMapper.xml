@@ -6,13 +6,15 @@
 
     <!-- 分页查询卡片列表 -->
     <select id="selectByPage" resultType="com.example.demo.infrastructure.vo.CardVO">
-        SELECT * FROM card
-        LIMIT #{pageSize} OFFSET #{pageNum}
+        SELECT * FROM card ORDER BY last_updated DESC
+            LIMIT #{pageSize} OFFSET #{pageNum}
     </select>
 
     <!-- 获取总记录数 -->
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM card
     </select>
+
+
 
 </mapper>

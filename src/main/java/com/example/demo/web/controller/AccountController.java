@@ -2,6 +2,7 @@ package com.example.demo.web.controller;
 
 import com.example.demo.application.service.AccountService;
 import com.example.demo.domain.model.Account;
+import com.example.demo.web.controller.view.PageView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
+
+
+
 
     @Autowired
     private AccountService accountService;
@@ -41,6 +45,14 @@ public class AccountController {
            return ResponseEntity.badRequest().body(result);
        }
 
+
+
+    }
+
+
+    @PostMapping("/listPage")
+    public ResponseEntity getCardList(@RequestBody PageView view) {
+        return accountService.getAccountByPage(view.getPage(), view.getSize());
     }
 
 
